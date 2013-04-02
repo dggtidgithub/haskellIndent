@@ -10,6 +10,8 @@ spaceTokens = map spaces . (filter (/= "")). lines
 
 -- given a list (in fact ordered stack) of opened indentations in current scope
 -- test if current indentation is correct
+-- boolean first argument means we need to find head of third argument in second argument stack
+-- (this is the case for the dedent)
 correct :: (Num a, Ord a) => Bool -> [a] -> [a] -> Bool
 correct _ [] (0:y)  = correct False [0] y
 correct _ [] (_:_) = False
