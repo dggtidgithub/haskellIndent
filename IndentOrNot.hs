@@ -6,7 +6,7 @@ spaces [] = 0
 
 -- computes list of trailing spaces of non empty lines
 spaceTokens :: String -> [Integer]
-spaceTokens = map spaces . (filter (/= "")). lines 
+spaceTokens = map spaces . (filter ((/= ""). (dropWhile (== ' ')))). lines 
 
 -- given a list (in fact ordered stack) of opened indentations in current scope
 -- test if current indentation is correct
@@ -31,7 +31,7 @@ tests =
 	("\na b c\n   d e f\n\nhello\n", True),	
 	("\na b c\n   d e f\n\n   hello\n", True),
 	("\na b c\n   d e f\n\n    hello\n", True),
-	("\na b c\n   d e f\n\n    hello\n   a", True),
+	("\na b c\n   d e f\n  \n    hello\n   a", True),
 	("\na b c\n   d e f\n\n    hello\n  a", False)]
 
 unitTest (s, v) = (indents s) == v
