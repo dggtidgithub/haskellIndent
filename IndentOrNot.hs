@@ -24,7 +24,7 @@ correctDedent [] _ = False
 correctDedent _ []  = False
 correctDedent (x:t) (y:u)
 	| x < y  = False                    -- did not find the indentation level
-	| x == y = correctIndent (x:t) u 	-- found, continue with indentation testing
+	| x == y = correctIndent (x:t) u    -- found, continue with indentation testing
 	| x > y  = correctDedent t (y:u)    -- not yet, go on dedenting
 
 
